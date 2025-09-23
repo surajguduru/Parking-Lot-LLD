@@ -5,7 +5,7 @@ classDiagram
 class ParkingLot {
     - List<ParkingSlot> slots
     - List<EntryGate> entryGates
-    -List<ExitGate> exitGates
+    - List<ExitGate> exitGates
     - SlotSelectionStrategy strategy
     +getAvailableSlot() ParkingSlot
 }
@@ -32,12 +32,6 @@ class Vehicle {
     - SlotType type
 }
 
-enum SlotType {
-    SMALL
-    MEDIUM
-    LARGE
-}
-
 class Ticket {
     - String ticketId
     - Vehicle vehicle
@@ -59,6 +53,13 @@ class EntryGate {
 
 class ExitGate {
     +processExit(Ticket)
+}
+
+class SlotType {
+    <<enumeration>>
+    SMALL
+    MEDIUM
+    LARGE
 }
 
 %% Relationships
