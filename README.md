@@ -3,56 +3,56 @@
 ```mermaid
 classDiagram
 class ParkingLot {
-    - List<ParkingSlot> slots
-    - List<EntryGate> entryGates
-    - List<ExitGate> exitGates
-    - SlotSelectionStrategy strategy
-    +getAvailableSlot() ParkingSlot
+    - slots
+    - entryGates
+    - exitGates
+    - strategy
+    + getAvailableSlot()
 }
 
 class ParkingSlot {
-    - int slotId
-    - SlotType type
-    - boolean occupied
-    - Map<EntryGate, Integer> distanceFromGate
-    +getDistanceFrom(EntryGate) int
-    +occupy()
-    +vacate()
+    - slotId
+    - type
+    - occupied
+    - distanceFromGate
+    + getDistanceFrom(entryGate)
+    + occupy()
+    + vacate()
 }
 
 class EVChargable {
-    - ParkingSlot slot
-    +occupy()
-    +vacate()
-    +chargeVehicle()
+    - slot
+    + occupy()
+    + vacate()
+    + chargeVehicle()
 }
 
 class Vehicle {
-    - String vehicleNumber
-    - SlotType type
+    - vehicleNumber
+    - type
 }
 
 class Ticket {
-    - String ticketId
-    - Vehicle vehicle
-    - ParkingSlot slot
-    - Date entryTime
+    - ticketId
+    - vehicle
+    - slot
+    - entryTime
 }
 
 interface SlotSelectionStrategy {
-    +findSlot(List<ParkingSlot>) ParkingSlot
+    + findSlot(slotType, entryGate)
 }
 
 class NearestSlotStrategy {
-    +findSlot(List<ParkingSlot>) ParkingSlot
+    + findSlot(slotType, entryGate)
 }
 
 class EntryGate {
-    +generateTicket(Vehicle) Ticket
+    + generateTicket(vehicle)
 }
 
 class ExitGate {
-    +processExit(Ticket)
+    + processExit(ticket)
 }
 
 class SlotType {
