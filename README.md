@@ -15,7 +15,7 @@ class ParkingSlot {
     - type
     - occupied
     - distanceFromGate
-    + getDistanceFrom(entryGate)
+    + getDistanceFrom()
     + occupy()
     + vacate()
 }
@@ -39,20 +39,18 @@ class Ticket {
     - entryTime
 }
 
-interface SlotSelectionStrategy {
-    + findSlot(slotType, entryGate)
-}
+interface SlotSelectionStrategy
+SlotSelectionStrategy : +findSlot()
 
-class NearestSlotStrategy {
-    + findSlot(slotType, entryGate)
-}
+class NearestSlotStrategy
+NearestSlotStrategy : +findSlot()
 
 class EntryGate {
-    + generateTicket(vehicle)
+    + generateTicket()
 }
 
 class ExitGate {
-    + processExit(ticket)
+    + processExit()
 }
 
 class SlotType {
